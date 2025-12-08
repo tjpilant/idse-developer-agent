@@ -1,21 +1,26 @@
 # IDSE Developer Agent
 
-> **Intent-Driven Systems Engineering (IDSE)**
-> Build from purpose. Engineer through context. Deliver with clarity.
+[![Validate KB](https://github.com/tjpilant/idse-developer-agent/actions/workflows/validate-kb.yml/badge.svg)](https://github.com/tjpilant/idse-developer-agent/actions/workflows/validate-kb.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Docs](https://img.shields.io/badge/Docs-GitHub%20Pages-0a66c2.svg)](https://tjpilant.github.io/idse-developer-agent/)
 
-This repository defines:
+![IDSE Banner](docs/assets/idse-banner.svg)
 
-- The **IDSE methodology**
-- The **IDSE Developer Agent**
-- The **system prompts**, **templates**, and **playbooks**
-- The complete knowledge base for an **OpenAI Custom GPT**
+> **Intent-Driven Systems Engineering (IDSE)**  
+> *Build from purpose. Engineer through context. Deliver with clarity.*
+
+This repository defines the foundation of **Intent-Driven Systems Engineering (IDSE)** and its primary implementation: the **IDSE Developer Agent**, designed to operate with OpenAI’s Custom GPTs.
 
 IDSE unifies:
 
-- **Intent-first reasoning**
-- **Context-aware decision making**
-- **Specification-driven development**
-- **AI-accelerated structured engineering**
+- **Intent-first reasoning**  
+- **Context-aware architectural decision making**  
+- **Specification-driven clarity and alignment**  
+- **AI-accelerated structured engineering**  
+- **Test-first implementation discipline**  
+- **Continuous feedback integration**
+
+Together these create a repeatable, consistent, and high-quality development lifecycle across projects.
 
 Use this repo when you want a reliable, repeatable way to turn a loosely worded product idea into a concrete specification, implementation plan, and working code with human-in-the-loop checkpoints along the way.
 
@@ -23,6 +28,9 @@ Use this repo when you want a reliable, repeatable way to turn a loosely worded 
 
 # 🔁 IDSE Pipeline
 
+The IDSE lifecycle follows a strict but flexible pipeline:
+
+```
 Intent
 → Context
 → Specification
@@ -30,14 +38,19 @@ Intent
 → Tasks
 → Implementation
 → Feedback → (loop)
+```
 
-Artifacts:
+Each stage produces explicit artifacts:
+
 - `intent.md`
 - `context.md`
 - `spec.md`
 - `plan.md`
 - `tasks.md`
-- `implementation/`
+- `implementation/` (code, tests, migrations, configs)
+
+This ensures complete traceability from high-level intent to final implementation.
+Visual reference: `docs/assets/idse-pipeline.svg`
 
 ## Stage-by-stage snapshot
 
@@ -56,44 +69,78 @@ Each stage feeds the next; if feedback reveals gaps, loop back to the last stabl
 
 # 🧠 Developer Agent Role
 
-The Agent acts as:
+The **Developer Agent** acts as a multidisciplinary engineering partner with the following combined skillsets:
 
-- Senior Full-Stack Engineer
-- Architect
-- API & Database Designer
-- AI/ML Integrator
-- UI/UX-Aware Frontend Developer
+- Senior Full-Stack Engineer  
+- Systems Architect  
+- API & Database Designer  
+- AI/ML Engineer  
+- UI/UX-Aware Frontend Developer  
 
-It follows IDSE strictly and does not skip pipeline stages.
+The Agent must:
+
+- Follow the IDSE pipeline strictly  
+- Never skip required phases  
+- Produce structured artifacts before implementation  
+- Use test-first patterns  
+- Generate code aligned with intent, context, and specification  
+- Respect the IDSE Constitution (guardrails and principles)
 
 The agent is optimized for structured collaboration: it writes drafts for every artifact, asks for missing context, proposes plans with explicit trade-offs, and only proceeds once checkpoints are confirmed.
 
 ---
 
-# 📘 File Structure
+# 📘 Repository Structure
 
-- `docs/` – methodology, constitution, pipeline, agent framework, prompting tips, and implementation patterns
-- `prompts/` – system prompt for Custom GPT
-- `kb/templates/` – empty shells for all IDSE artifacts to accelerate new projects
-- `kb/examples/` – worked examples showing intent → implementation
-- `kb/playbooks/` – repeatable operating guides for common scenarios (e.g., feature builds, refactors)
-- `.github/workflows/` – quality validation tools
-
-See `docs/03-idse-pipeline.md` for the canonical description of how stages connect, and `docs/05-idse-prompting-guide.md` for how to drive the agent with clear prompts.
+```
+idse-developer-agent/
+├── docs/                 # Methodology, constitution, pipeline, agent model
+├── prompts/              # Custom GPT system prompt(s)
+├── kb/                   # Knowledge base for IDSE development
+│   ├── templates/        # Templates for intent, context, spec, plan, tasks
+│   ├── examples/         # Example walkthroughs and sample artifacts
+│   ├── playbooks/        # Operational workflows and guides
+├── .github/
+│   ├── workflows/        # CI validation (e.g., validate-kb.yml)
+└── README.md
+```
 
 ---
 
-# 🚀 Using With OpenAI Custom GPT
+# 🚀 Using This With an OpenAI Custom GPT
 
-1. Create a Custom GPT in OpenAI.
-2. Paste `prompts/custom-gpt-system-prompt.md` into the Instructions box.
-3. Upload everything under:
-   - `docs/`
-   - `kb/templates/`
-   - `kb/examples/`
-   - `kb/playbooks/`
+To enable the Agent:
 
-This gives the GPT full IDSE-awareness.
+### **1. Create a Custom GPT**  
+In the OpenAI interface.
+
+### **2. Paste the Developer Agent system prompt**  
+Located at:
+
+```
+prompts/custom-gpt-system-prompt.md
+```
+
+### **3. Upload the knowledge base**  
+Upload:
+
+- `docs/`
+- `kb/templates/`
+- `kb/examples/`
+- `kb/playbooks/`
+
+This provides the GPT full awareness of:
+
+- IDSE methodology  
+- Constitution  
+- Pipeline  
+- Architecture principles  
+- Templates and examples  
+- Tasking and planning structure  
+
+### **4. Begin prompting using the IDSE Prompting Guide**
+
+The GPT will then fully operate as an IDSE Developer Agent.
 
 ### Running the pipeline with the agent
 

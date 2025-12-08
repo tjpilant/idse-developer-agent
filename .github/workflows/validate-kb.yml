@@ -11,9 +11,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check for unresolved clarifications
         run: |
-          if grep -R "\[NEEDS CLARIFICATION\]" -n kb/ docs/; then
-            echo "❌ Clarifications required before merging."
+          if grep -R "\[REQUIRES INPUT\]" -n kb/ docs/ --exclude-dir templates; then
+            echo "❌ Unresolved inputs detected."
             exit 1
           else
-            echo "✔ No unresolved clarifications."
+            echo "✔ No unresolved inputs."
           fi

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="220" viewBox="0 0 1200 220" role="img" aria-labelledby="title desc">
+  <title id="title">IDSE Pipeline</title>
+  <desc id="desc">Intent, Context, Specification, Plan, Tasks, Implementation, and Feedback loop.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0a66c2"/>
+      <stop offset="100%" stop-color="#103f91"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 z" fill="#0a66c2"/>
+    </marker>
+    <style>
+      .frame { fill: #f7f9fc; stroke: #d5deea; stroke-width: 2; rx: 12; }
+      .label { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-size: 16px; fill: #0b1c3f; font-weight: 600; }
+      .accent { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-size: 14px; fill: #103f91; }
+    </style>
+  </defs>
+  <rect x="12" y="12" width="1176" height="196" fill="url(#bg)" opacity="0.08" rx="16"/>
+  <g transform="translate(40,70)">
+    <rect class="frame" x="0" y="-30" width="140" height="80"/>
+    <text class="label" x="70" y="10" text-anchor="middle">Intent</text>
+    <rect class="frame" x="170" y="-30" width="170" height="80"/>
+    <text class="label" x="255" y="10" text-anchor="middle">Context</text>
+    <rect class="frame" x="370" y="-30" width="190" height="80"/>
+    <text class="label" x="465" y="10" text-anchor="middle">Specification</text>
+    <rect class="frame" x="590" y="-30" width="160" height="80"/>
+    <text class="label" x="670" y="10" text-anchor="middle">Plan</text>
+    <rect class="frame" x="780" y="-30" width="140" height="80"/>
+    <text class="label" x="850" y="10" text-anchor="middle">Tasks</text>
+    <rect class="frame" x="950" y="-30" width="170" height="80"/>
+    <text class="label" x="1035" y="10" text-anchor="middle">Implementation</text>
+    <line x1="140" y1="10" x2="170" y2="10" stroke="#0a66c2" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="340" y1="10" x2="370" y2="10" stroke="#0a66c2" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="560" y1="10" x2="590" y2="10" stroke="#0a66c2" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="750" y1="10" x2="780" y2="10" stroke="#0a66c2" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="920" y1="10" x2="950" y2="10" stroke="#0a66c2" stroke-width="3" marker-end="url(#arrow)"/>
+  </g>
+  <g transform="translate(600,160)">
+    <line x1="300" y1="0" x2="-320" y2="0" stroke="#0a66c2" stroke-width="3" marker-end="url(#arrow)"/>
+    <text class="accent" x="0" y="-8" text-anchor="middle">Feedback loop</text>
+  </g>
+</svg>

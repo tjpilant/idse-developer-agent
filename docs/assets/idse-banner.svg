@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">IDSE Developer Agent</title>
+  <desc id="desc">Banner for Intent-Driven Systems Engineering</desc>
+  <defs>
+    <linearGradient id="banner" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0a66c2"/>
+      <stop offset="100%" stop-color="#103f91"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <style>
+      .title { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-weight: 700; font-size: 54px; fill: #ffffff; }
+      .subtitle { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-weight: 400; font-size: 20px; fill: #e7efff; }
+      .tag { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-weight: 600; font-size: 14px; fill: #0b1c3f; }
+    </style>
+  </defs>
+  <rect width="1200" height="360" fill="url(#banner)" rx="18"/>
+  <rect x="32" y="24" width="1136" height="312" fill="#ffffff" opacity="0.06" rx="16"/>
+  <rect x="32" y="24" width="1136" height="140" fill="url(#glow)" rx="16"/>
+  <g transform="translate(80,170)">
+    <text class="title">Intent-Driven Systems Engineering</text>
+    <text class="subtitle" y="40">Build from purpose. Engineer through context. Deliver with clarity.</text>
+  </g>
+  <g transform="translate(80,260)">
+    <rect x="0" y="-24" width="170" height="44" rx="12" fill="#ffffff" opacity="0.18"/>
+    <text class="tag" x="12" y="4">Developer Agent · IDSE</text>
+  </g>
+</svg>
