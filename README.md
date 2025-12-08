@@ -152,6 +152,11 @@ This provides the GPT full awareness of:
 
 The GPT will then fully operate as an IDSE Developer Agent.
 
+## Using this with Claude Projects
+
+For Claude-specific setup (Projects, Claude Code, and prompt adaptations), see
+`docs/idse-claude-skills-guide.md`.
+
 ### Running the pipeline with the agent
 
 1. **Start with intent** – Provide the product/problem statement, constraints, and success criteria. The agent will draft `intent.md` and ask clarifying questions.
