@@ -1,4 +1,4 @@
-# Using IDSE Developer Agent with Claude Skills
+# Using IDSE Developer Agent with Claude Project
 
 > **A practical guide for integrating Intent-Driven Systems Engineering with Claude's capabilities**
 
