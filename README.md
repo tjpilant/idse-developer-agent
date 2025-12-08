@@ -110,6 +110,7 @@ idse-developer-agent/
 - Onboarding: `docs/08-getting-started.md`
 - Artifacts comparison: `docs/04-idse-spec-plan-tasks.md`
 - SDD to IDSE evolution: `docs/07-sdd-to-idse.md`
+- Claude skills guide: `docs/idse-claude-skills-guide.md`
 - Example walkthrough: `kb/examples/real-time-notifications.md`
 - Playbooks: `kb/playbooks/bug-fix.md`, `kb/playbooks/change-request.md`,
   `kb/playbooks/third-party-api-integration.md`

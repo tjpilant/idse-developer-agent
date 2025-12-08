@@ -21,6 +21,9 @@ Welcome to the IDSE knowledge base. This site provides the methodology, constitu
 - [From SDD to IDSE](07-sdd-to-idse.md)
 - [Getting Started](08-getting-started.md)
 
+## Additional Guides
+- [Claude Skills Guide](idse-claude-skills-guide.md)
+
 ## Templates and Examples
 - Templates: `kb/templates/` (including `context-template.md`,
   `plan-template.md`, `test-plan-template.md`)
