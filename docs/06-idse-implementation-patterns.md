@@ -9,6 +9,9 @@
 - Contract tests first
 - Integration tests next
 - Unit tests last
+- Define a test plan before coding; use `kb/templates/test-plan-template.md` to
+  capture objectives, environments, data, and success criteria during the Plan
+  stage.
 
 ## API Design Patterns
 - Consistent naming

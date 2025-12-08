@@ -15,13 +15,18 @@ Welcome to the IDSE knowledge base. This site provides the methodology, constitu
 - [IDSE Constitution](02-idse-constitution.md)
 - [IDSE Pipeline](03-idse-pipeline.md)
 - [IDSE Agent Framework](04-idse-agents.md)
+- [Specification vs Plan vs Tasks](04-idse-spec-plan-tasks.md)
 - [IDSE Prompting Guide](05-idse-prompting-guide.md)
 - [IDSE Implementation Patterns](06-idse-implementation-patterns.md)
+- [From SDD to IDSE](07-sdd-to-idse.md)
+- [Getting Started](08-getting-started.md)
 
 ## Templates and Examples
-- Templates: `kb/templates/`
-- Examples: `kb/examples/`
-- Playbooks: `kb/playbooks/`
+- Templates: `kb/templates/` (including `context-template.md`,
+  `plan-template.md`, `test-plan-template.md`)
+- Examples: `kb/examples/` (e.g., `real-time-notifications.md`)
+- Playbooks: `kb/playbooks/` (e.g., bug-fix, change-request,
+  third-party-api-integration)
 
 ## Contributing
 - Please read `CONTRIBUTING.md` and `SECURITY.md` before opening issues or PRs.
