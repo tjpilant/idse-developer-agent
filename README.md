@@ -152,6 +152,14 @@ This provides the GPT full awareness of:
 
 The GPT will then fully operate as an IDSE Developer Agent.
 
+### Optional: Configure GitHub action for live repo access
+
+- Import `actions/github-repo-reader.yaml` in the Custom GPT **Actions** tab.
+- Set `User-Agent` (e.g., `idse-dev-agent`) and add a PAT for private repos
+  (leave blank for public).
+- The action exposes `getFileOrDirContents`; file responses are base64 and
+  should be decoded. Use it for files not uploaded to the knowledge base.
+
 ## Using this with Claude Projects
 
 For Claude-specific setup (Projects, Claude Code, and prompt adaptations), see
