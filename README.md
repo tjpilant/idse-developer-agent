@@ -116,6 +116,8 @@ idse-developer-agent/
   `kb/playbooks/third-party-api-integration.md`
 - Configuration manifest: `idse-agent-config.yaml` (docs, prompts, execution,
   optional integrations)
+- Distributed manifest: `idse-agent-config-distributed.yaml` (multi-agent
+  orchestration config)
 
 ---
 
