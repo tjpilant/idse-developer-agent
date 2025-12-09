@@ -1,0 +1,198 @@
+# IDSE Developer Agent — Distributed Configuration (with model bindings)
+# Version: 1.1.0
+# Purpose: Defines six autonomous agents with explicit model assignments
+# Last Updated: 2025-12-09
+
+metadata:
+  project: IDSE Developer Agent
+  mode: distributed
+  orchestrator_compatibility:
+    - agency_swarm
+    - langgraph
+    - crewai
+  description: >
+    Each IDSE phase is an independent agent node with explicit LLM bindings.
+    Agents hand off artifacts in sequence (intent.md → context.md → spec.md →
+    plan.md + test-plan.md → tasks.md → code/tests).
+  constitution_reference: ./docs/02-idse-constitution.md
+
+shared_knowledge:
+  preload:
+    - ./docs/01-idse-philosophy.md
+    - ./docs/02-idse-constitution.md
+    - ./docs/03-idse-pipeline.md
+    - ./docs/04-idse-agents.md
+    - ./docs/04-idse-spec-plan-tasks.md
+    - ./docs/05-idse-prompting-guide.md
+  description: >
+    Loaded globally so all agents share the same constitution and pipeline rules.
+
+agents:
+  - name: intent-agent
+    role: "Intent Agent"
+    prompt_file: ./prompts/intent-agent.prompt.md
+    model:
+      provider: anthropic
+      model_name: claude-3-sonnet
+      temperature: 0.4
+      purpose: "Extract goals, stakeholders, measurable success"
+    inputs:
+      - user_request
+    outputs:
+      - ./intents/current/intent.md
+    responsibilities:
+      - Capture purpose, problem, and measurable success criteria
+      - Identify stakeholders and constraints
+    next_agent: context-agent
+
+  - name: context-agent
+    role: "Context Agent"
+    prompt_file: ./prompts/context-agent.prompt.md
+    model:
+      provider: openai
+      model_name: gpt-5
+      temperature: 0.3
+      purpose: "Structure stack, scale, compliance, risks"
+    inputs:
+      - ./intents/current/intent.md
+    outputs:
+      - ./contexts/current/context.md
+    responsibilities:
+      - Define stack, scale, compliance, and risks
+      - Translate intent into environmental boundaries
+    next_agent: spec-agent
+
+  - name: spec-agent
+    role: "Specification Agent"
+    prompt_file: ./prompts/spec-agent.prompt.md
+    model:
+      provider: anthropic
+      model_name: claude-3-opus
+      temperature: 0.2
+      purpose: "Long-form spec synthesis and clarity"
+    inputs:
+      - ./intents/current/intent.md
+      - ./contexts/current/context.md
+    outputs:
+      - ./specs/current/spec.md
+    responsibilities:
+      - Produce testable, traceable specification
+      - Reject incomplete context or unresolved intent
+    next_agent: plan-agent
+
+  - name: plan-agent
+    role: "Plan Agent"
+    prompt_file: ./prompts/plan-agent.prompt.md
+    model:
+      provider: openai
+      model_name: gpt-5
+      temperature: 0.2
+      purpose: "Architecture, API, and test strategy design"
+    inputs:
+      - ./specs/current/spec.md
+    outputs:
+      - ./plans/current/plan.md
+      - ./plans/current/test-plan.md
+    responsibilities:
+      - Design architecture, components, data models, and test strategy
+      - Enforce test-first and simplicity mandates
+    next_agent: task-agent
+
+  - name: task-agent
+    role: "Task Agent"
+    prompt_file: ./prompts/task-agent.prompt.md
+    model:
+      provider: openai
+      model_name: codex-latest
+      temperature: 0.25
+      purpose: "Detailed task breakdown and dependency mapping"
+    inputs:
+      - ./plans/current/plan.md
+      - ./plans/current/test-plan.md
+    outputs:
+      - ./tasks/current/tasks.md
+    responsibilities:
+      - Break plan into atomic, testable, parallelizable tasks
+      - Maintain traceability to plan components
+    next_agent: implementation-agent
+
+  - name: implementation-agent
+    role: "Implementation Agent"
+    prompt_file: ./prompts/implementation-agent.prompt.md
+    model:
+      provider: github
+      model_name: copilot-pro
+      temperature: 0.2
+      purpose: "Test-first code and migrations per plan/tasks"
+    inputs:
+      - ./tasks/current/tasks.md
+      - ./plans/current/plan.md
+      - ./plans/current/test-plan.md
+    outputs:
+      - ./implementation/code/
+      - ./implementation/tests/
+    responsibilities:
+      - Implement code and tests per plan
+      - Report coverage and update artifacts if deviations occur
+    next_agent: feedback-loop
+
+feedback-loop:
+  description: >
+    Captures testing or production insights and routes them back to update
+    intent, context, or spec documents per Article IX.
+  update_targets:
+    - ./intents/current/intent.md
+    - ./contexts/current/context.md
+    - ./specs/current/spec.md
+  validation_workflow: ./.github/workflows/validate-kb.yml
+  trigger:
+    - on_test_failure
+    - on_observability_alert
+    - on_user_feedback
+  next_agent: intent-agent
+
+execution:
+  orchestration_strategy: sequential
+  allow_parallel_agents: false
+  token_profile:
+    per_agent_budget: 2000
+    shared_context_budget: 1500
+    strategy: "Stage-aware retrieval + shared constitution preload"
+  logging:
+    enabled: true
+    format: json
+    output_dir: ./logs/
+  observability:
+    enabled: false
+    planned_integration: future
+
+optional_layers:
+  vector_memory:
+    status: planned
+    integration_hint: "For retrieval of long-term examples and historical specs."
+  external_apis:
+    status: deferred
+    potential_sources:
+      - github
+      - jira
+      - observability
+  ui_integration:
+    compatible_editors:
+      - vscode_copilot
+      - jetbrains_ai_assistant
+      - browser_chatgpt_custom_gpt
+  sandbox:
+    auto_commit: false
+    run_tests: true
+
+status:
+  configuration_state: "🟢 Distributed with explicit models"
+  agents_defined: 6
+  feedback_enabled: true
+  orchestration_ready: true
+  average_token_cost_per_cycle: "~10k–12k"
+  notes: >
+    Each agent can run on a different model (Claude, GPT, Codex, Copilot) while
+    sharing the same constitution and core knowledge.
+
+# End of manifest
