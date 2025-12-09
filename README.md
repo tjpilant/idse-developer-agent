@@ -114,6 +114,8 @@ idse-developer-agent/
 - Example walkthrough: `kb/examples/real-time-notifications.md`
 - Playbooks: `kb/playbooks/bug-fix.md`, `kb/playbooks/change-request.md`,
   `kb/playbooks/third-party-api-integration.md`
+- Configuration manifest: `idse-agent-config.yaml` (docs, prompts, execution,
+  optional integrations)
 
 ---
 

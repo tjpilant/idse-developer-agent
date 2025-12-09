@@ -1,0 +1,147 @@
+# IDSE Developer Agent Configuration Manifest
+# Version: 1.0.0
+# Purpose: Defines active configuration, document sources, and optional integrations
+# Author: IDSE Developer Agent
+# Last Updated: 2025-12-09
+
+metadata:
+  project: IDSE Developer Agent
+  description: >
+    Configuration manifest describing preloaded documents, active agent prompts,
+    and deferred external integrations for the Intent-Driven Systems Engineering
+    framework.
+  version_control:
+    repository: https://github.com/tjpilant/idse-developer-agent
+    branch: main
+    managed_by: Developer Agent
+  constitution_compliance:
+    articles_active:
+      - I: Intent Supremacy
+      - II: Context Alignment
+      - III: Specification Completeness
+      - IV: Test-First Mandate
+      - V: Simplicity & Anti-Abstraction
+      - VI: Transparency & Observability
+      - VII: Plan Before Build
+      - VIII: Atomic Tasking
+      - IX: Feedback Incorporation
+
+# ────────────────────────────────────────────────────────────────
+# 1️⃣ CORE KNOWLEDGE (always preloaded)
+# ────────────────────────────────────────────────────────────────
+knowledge_base:
+  preload:
+    - docs/01-idse-philosophy.md
+    - docs/02-idse-constitution.md
+    - docs/03-idse-pipeline.md
+    - docs/04-idse-agents.md
+    - docs/04-idse-spec-plan-tasks.md
+    - docs/05-idse-prompting-guide.md
+    - docs/06-idse-implementation-patterns.md
+    - docs/07-sdd-to-idse.md
+    - docs/08-getting-started.md
+  description: >
+    These documents define the IDSE philosophy, constitution, agent framework,
+    pipeline, and prompting rules. They are the reasoning foundation for all
+    operations.
+
+# ────────────────────────────────────────────────────────────────
+# 2️⃣ ACTIVE PROMPTS (role definitions)
+# ────────────────────────────────────────────────────────────────
+prompts:
+  directory: ./prompts/
+  active:
+    - intent-agent.prompt.md
+    - context-agent.prompt.md
+    - spec-agent.prompt.md
+    - plan-agent.prompt.md
+    - task-agent.prompt.md
+    - implementation-agent.prompt.md
+  description: >
+    Each prompt defines one constitutional agent role. In this configuration, a
+    single Developer Agent dynamically embodies all six roles but may hand them
+    off individually in multi-agent orchestrations.
+
+# ────────────────────────────────────────────────────────────────
+# 3️⃣ EXECUTION MODE
+# ────────────────────────────────────────────────────────────────
+execution:
+  mode: unified
+  orchestrator: internal
+  notes: >
+    The Developer Agent operates as a single agent, embodying all IDSE roles.
+    Prompts are reference contracts rather than separate subprocesses.
+  token_profile:
+    average_load_tokens: 4000
+    optimization_strategy: "Core preload + stage-aware retrieval"
+  compliance: full
+
+# ────────────────────────────────────────────────────────────────
+# 4️⃣ OPTIONAL LAYERS (deferred integrations)
+# ────────────────────────────────────────────────────────────────
+optional_layers:
+  vector_memory:
+    status: deferred
+    rationale: >
+      Not required until long-term document retrieval or large-scale example
+      recall becomes necessary.
+  external_apis:
+    status: deferred
+    possible_integrations:
+      - github:
+          description: "Live repo introspection and feedback loop integration"
+          action_spec: actions/github-repo-reader.yaml
+      - jira: "Task synchronization"
+      - observability: "Production telemetry into feedback phase"
+    rationale: >
+      All reasoning is currently deterministic; external context not yet
+      required.
+  multi_agent_orchestration:
+    status: ready
+    compatible_with:
+      - agency_swarm
+      - langgraph
+      - crewai
+    rationale: >
+      Six prompt definitions align directly with these frameworks. Activation
+      optional.
+
+# ────────────────────────────────────────────────────────────────
+# 5️⃣ FILE SYSTEM MAP
+# ────────────────────────────────────────────────────────────────
+filesystem:
+  docs: ./docs/
+  prompts: ./prompts/
+  kb:
+    templates: ./kb/templates/
+    playbooks: ./kb/playbooks/
+    examples: ./kb/examples/
+  workflows: ./.github/workflows/
+  validation:
+    file: validate-kb.yml
+    rule: "Fail CI if any [REQUIRES INPUT] markers remain unresolved."
+
+# ────────────────────────────────────────────────────────────────
+# 6️⃣ FEEDBACK LOOP
+# ────────────────────────────────────────────────────────────────
+feedback:
+  update_policy:
+    - Gather production or test feedback.
+    - Update affected artifacts (intent, context, spec, plan).
+    - Re-run validation workflow.
+  notes: >
+    Manual feedback incorporation is active; automation planned for future API
+    integrations or telemetry hooks.
+
+# ────────────────────────────────────────────────────────────────
+# ✅ CONFIGURATION HEALTH SUMMARY
+# ────────────────────────────────────────────────────────────────
+status:
+  constitution_compliance: "✅ Full"
+  token_efficiency: "✅ Balanced (~4k tokens typical)"
+  modularity: "✅ Ready for multi-agent orchestration"
+  api_dependency: "🚫 None (self-contained)"
+  retrieval_layer: "⚙️ Optional"
+  overall_state: "🟢 Stable configuration — production-ready"
+
+# End of manifest
