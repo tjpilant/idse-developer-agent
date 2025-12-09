@@ -2,6 +2,19 @@
 
 [P] = parallel safe
 
-## Phase 0
-## Phase 1
-## Phase 2
+## Instructions
+- Derive tasks directly from the implementation plan and contracts.
+- For each task, note owner, dependencies, and acceptance/validation notes.
+- Keep tasks independent and testable; mark parallelizable tasks with [P].
+
+## Phase 0 – Foundations
+- [ ] Task 0.1 – ... (Owner: ...) (Deps: ...) (Acceptance: ...)
+- [ ] Task 0.2 – ...
+
+## Phase 1 – Core Behavior
+- [ ] Task 1.1 – ...
+- [ ] Task 1.2 – ...
+
+## Phase 2 – NFRs / Hardening
+- [ ] Task 2.1 – ...
+- [ ] Task 2.2 – ...
