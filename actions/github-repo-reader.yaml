@@ -1,0 +1,92 @@
+openapi: 3.1.0
+info:
+  title: GitHub Repo Reader
+  version: 1.0.0
+  description: >
+    Read files or list directory contents from a GitHub repository.
+    Supports private repositories via bearer token (PAT).
+servers:
+  - url: https://api.github.com
+    description: GitHub REST API
+components:
+  securitySchemes:
+    githubToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >
+        Personal access token for private repos. Leave empty for public repos.
+paths:
+  /repos/{owner}/{repo}/contents/{path}:
+    get:
+      operationId: getFileOrDirContents
+      summary: Get file or directory contents from a GitHub repository
+      security:
+        - githubToken: []
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          description: GitHub username or organization
+          schema:
+            type: string
+        - name: repo
+          in: path
+          required: true
+          description: Repository name
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          description: >
+            Path to file or directory. Use "" or "/" to list the repo root.
+          schema:
+            type: string
+        - name: User-Agent
+          in: header
+          required: true
+          description: Set a user agent, e.g., "idse-dev-agent" (required by GitHub).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: File or directory details
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  # Directory listing
+                  - type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        path:
+                          type: string
+                        type:
+                          type: string
+                          enum: [file, dir, symlink, submodule]
+                        download_url:
+                          type: string
+                        sha:
+                          type: string
+                  # File metadata + base64 content
+                  - type: object
+                    properties:
+                      name:
+                        type: string
+                      path:
+                        type: string
+                      type:
+                        type: string
+                        enum: [file]
+                      content:
+                        type: string
+                        description: Base64-encoded file contents
+                      encoding:
+                        type: string
+                        enum: [base64]
+                      sha:
+                        type: string
