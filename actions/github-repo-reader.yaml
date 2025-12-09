@@ -9,6 +9,7 @@ servers:
   - url: https://api.github.com
     description: GitHub REST API
 components:
+  schemas: {}
   securitySchemes:
     githubToken:
       type: http
@@ -41,12 +42,6 @@ paths:
           required: true
           description: >
             Path to file or directory. Use "" or "/" to list the repo root.
-          schema:
-            type: string
-        - name: User-Agent
-          in: header
-          required: true
-          description: Set a user agent, e.g., "idse-dev-agent" (required by GitHub).
           schema:
             type: string
       responses:
