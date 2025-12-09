@@ -9,7 +9,7 @@ Intent → Context → Specification → Plan → Tasks → Implementation → F
 Instead of one monolithic “AI,” you can split responsibilities into focused
 agents with clear scope and guardrails.
 
-## Files and roles
+## Files and roles (tool / node function)
 - `intent-agent.prompt.md` — purpose, stakeholders, measurable success, scope,
   risks.
 - `context-agent.prompt.md` — environment, stack, scale, constraints,
@@ -31,7 +31,7 @@ agents with clear scope and guardrails.
   agent config so the AI behaves consistently for that stage.
 - **API (OpenAI/Claude/etc.):** Set `system` to a prompt file, then send
   intent/context/spec to get the next artifact (e.g., spec.md).
-- **Agency Swarm / LangGraph / CrewAI / AutoGen:** Each prompt is a node; the
+- **Agency Swarm / LangGraph / CrewAI / AutoGen:** Each prompt is a tool or node; the
   orchestrator passes outputs (files) between nodes in sequence, or a single
   orchestrator agent can “switch hats” by loading the needed prompt per stage.
 - **CI/CD:** Call a model with the right prompt to validate an artifact (e.g.,
