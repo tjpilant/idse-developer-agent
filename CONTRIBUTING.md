@@ -1,5 +1,10 @@
 # Contributing to IDSE Developer Agent
 
+> 🧠 **Note:**  
+> This document governs contributions to the **IDSE Developer Agent repository**.  
+> For the internal governance subsystem (automation scripts, handoffs, and state management),  
+> see [`idse-governance/CONTRIBUTING.md`](idse-governance/CONTRIBUTING.md).
+
 Thanks for your interest in improving IDSE. This project uses the Intent-Driven Systems Engineering pipeline to keep contributions consistent, testable, and traceable.
 
 ## How to Propose Work
@@ -27,3 +32,18 @@ Thanks for your interest in improving IDSE. This project uses the Intent-Driven 
 ## Security
 - Do not include sensitive data in issues or PRs.
 - Report vulnerabilities privately as described in `SECURITY.md`.
+
+---
+
+## Governance Layer Contributions
+
+If your contribution affects any of the following files:
+- `.cursor/tasks/governance.py`
+- `.cursor/tasks/validate-idse-layer.sh`
+- Any file under `idse-governance/`
+- VS Code task integrations or governance configs
+
+You must follow the specialized governance contribution process:
+- Read [`idse-governance/CONTRIBUTING.md`](idse-governance/CONTRIBUTING.md)
+- Pass all governance validation tests before submitting a PR
+- Reference constitutional articles in your PR summary when relevant

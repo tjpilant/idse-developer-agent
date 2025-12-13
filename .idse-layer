@@ -1,0 +1,3 @@
+# IDSE Layer Marker
+This repository includes an IDSE Governance Layer.
+Agents (Claude, Codex) must not write code or governance artifacts across this boundary.

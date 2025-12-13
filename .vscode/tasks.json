@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "View IDSE State",
+      "type": "shell",
+      "command": "python3 .cursor/tasks/governance.py view",
+      "group": "none"
+    },
+    {
+      "label": "Handoff to Codex",
+      "type": "shell",
+      "command": "python3 .cursor/tasks/governance.py handoff claude_code codex_gpt 'Feature complete, ready for review'"
+    },
+    {
+      "label": "Handoff to Claude",
+      "type": "shell",
+      "command": "python3 .cursor/tasks/governance.py handoff codex_gpt claude_code 'Review complete, feedback logged'"
+    },
+    {
+      "label": "Change Role to Builder",
+      "type": "shell",
+      "command": "python3 .cursor/tasks/governance.py role builder"
+    },
+    {
+      "label": "Change Role to Reviewer",
+      "type": "shell",
+      "command": "python3 .cursor/tasks/governance.py role reviewer"
+    }
+  ]
+}
