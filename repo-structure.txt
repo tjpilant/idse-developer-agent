@@ -1,0 +1,75 @@
+.
+├── AGENTS.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── SECURITY.md
+├── actions
+│   └── github-repo-reader.yaml
+├── docs
+│   ├── 01-idse-philosophy.md
+│   ├── 02-idse-constitution.md
+│   ├── 03-idse-pipeline.md
+│   ├── 04-idse-agents.md
+│   ├── 04-idse-spec-plan-tasks.md
+│   ├── 05-idse-prompting-guide.md
+│   ├── 06-idse-implementation-patterns.md
+│   ├── 07-sdd-to-idse.md
+│   ├── 08-getting-started.md
+│   ├── assets
+│   │   ├── idse-banner.svg
+│   │   └── idse-pipeline.svg
+│   ├── idse-claude-skills-guide.md
+│   └── index.md
+├── idse-agent-config-distributed.models.yaml
+├── idse-agent-config-distributed.yaml
+├── idse-agent-config.yaml
+├── idse-governance
+│   ├── AUTOMATION.md
+│   ├── CHANGELOG.md
+│   ├── CONTRIBUTING.md
+│   ├── GOVERNANCE_HISTORY.md
+│   ├── MAINTAINERS.md
+│   ├── QUICK_START.md
+│   ├── README.md
+│   ├── VALIDATION.md
+│   ├── feedback
+│   ├── protocols
+│   │   └── handoff_protocol.md
+│   ├── state
+│   │   └── state.json
+│   └── templates
+│       └── handoff_templates
+├── integrations
+│   └── vscode
+│       └── README_VSCODE.md
+├── kb
+│   ├── examples
+│   │   ├── example-intent-context-spec.md
+│   │   ├── example-plan-tasks-implementation.md
+│   │   └── real-time-notifications.md
+│   ├── playbooks
+│   │   ├── bug-fix.md
+│   │   ├── change-request.md
+│   │   ├── full-feature-idse-playbook.md
+│   │   ├── refactor-under-idse.md
+│   │   └── third-party-api-integration.md
+│   └── templates
+│       ├── context-template.md
+│       ├── intent-template.md
+│       ├── plan-template.md
+│       ├── spec-template.md
+│       ├── tasks-template.md
+│       └── test-plan-template.md
+├── prompts
+│   ├── README.md
+│   ├── context-agent.prompt.md
+│   ├── custom-gpt-system-prompt.md
+│   ├── implementation-agent.prompt.md
+│   ├── intent-agent.prompt.md
+│   ├── plan-agent.prompt.md
+│   ├── spec-agent.prompt.md
+│   └── task-agent.prompt.md
+└── repo-structure.txt
+
+17 directories, 56 files

@@ -1,6 +1,9 @@
 # IDSE Constitution
 
 The following articles govern the Developer Agent:
+The IDSE development pipeline comprises seven constitutional stages:
+**Intent → Context → Specification → Plan → Tasks → Implementation → Feedback.**
+
 
 ## Article I — Intent Supremacy
 All decisions must map directly to explicit Intent.

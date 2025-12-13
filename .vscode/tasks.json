@@ -26,6 +26,16 @@
       "label": "Change Role to Reviewer",
       "type": "shell",
       "command": "python3 .cursor/tasks/governance.py role reviewer"
+    },
+    {
+      "label": "Validate IDSE Governance Layer",
+      "type": "shell",
+      "command": "bash",
+      "args": [".cursor/tasks/validate-idse-layer.sh"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
     }
   ]
 }

@@ -9,6 +9,16 @@
 > **Intent-Driven Systems Engineering (IDSE)**  
 > *Build from purpose. Engineer through context. Deliver with clarity.*
 
+## Table of Contents
+1. About
+2. Running the Agency
+3. Governance Lifecycle
+4. Dual LLM Collaboration
+5. Validation & CI
+6. Contributing
+
+## About
+
 This repository defines the foundation of **Intent-Driven Systems Engineering (IDSE)** and its primary implementation: the **IDSE Developer Agent**, designed to operate with OpenAI’s Custom GPTs.
 
 IDSE unifies:
@@ -26,7 +36,13 @@ Use this repo when you want a reliable, repeatable way to turn a loosely worded 
 
 ---
 
-# 🔁 IDSE Pipeline
+## 🧩 IDSE Governance Layer
+
+This project includes a self-governing IDE automation layer under
+`/idse-governance/` which enforces the Intent-Driven Systems Engineering (IDSE)
+Constitution for Claude ↔ Codex collaboration.
+
+## 🔁 IDSE Pipeline
 
 The IDSE lifecycle follows a strict but flexible pipeline:
 
@@ -67,7 +83,25 @@ Each stage feeds the next; if feedback reveals gaps, loop back to the last stabl
 
 ---
 
-# 🧠 Developer Agent Role
+## Governance Lifecycle
+
+```mermaid
+graph TD
+  A(Intent) --> B(Context)
+  B --> C(Specification)
+  C --> D(Plan)
+  D --> E(Tasks)
+  E --> F(Implementation)
+  F --> G(Feedback)
+  G --> A
+  subgraph Dual-Agent Cycle
+  H[Claude - Build] --> I[Codex - Review]
+  I --> J[Claude - Refine]
+  J --> H
+  end
+```
+
+## 🧠 Developer Agent Role
 
 The **Developer Agent** acts as a multidisciplinary engineering partner with the following combined skillsets:
 
@@ -90,7 +124,7 @@ The agent is optimized for structured collaboration: it writes drafts for every 
 
 ---
 
-# 📘 Repository Structure
+## 📘 Repository Structure
 
 ```
 idse-developer-agent/
@@ -121,7 +155,9 @@ idse-developer-agent/
 
 ---
 
-# 🚀 Using This With an OpenAI Custom GPT
+## Running the Agency
+
+### 🚀 Using This With an OpenAI Custom GPT
 
 To enable the Agent:
 
@@ -185,9 +221,135 @@ For Claude-specific setup (Projects, Claude Code, and prompt adaptations), see
 - Ask the agent to compare alternatives when making architectural choices; it will document the rationale.
 - Keep `tasks.md` granular so work can be parallelized and verified independently.
 
+## Dual LLM Collaboration
+
+### Dual Governance Roles
+
+- **Claude:** Builder and Planner — implements code and documentation under the
+  Plan and Implementation stages.
+- **Codex:** Reviewer and Validator — audits and enforces compliance during
+  Feedback and Validation stages.
+
+## 🧩 IDSE Governance Layer Integration
+
+This repository now includes a **self-governing IDE automation layer** located
+in:
+
+```
+idse-governance/
+```
+
+### Purpose
+
+Transforms VS Code + Claude + Codex + Cursor into a **governed development
+workspace** that:
+
+- Tracks state, handoffs, and roles for LLM collaboration
+- Automates all IDSE lifecycle transitions
+- Enforces constitutional boundaries and CI validation
+- Logs every Claude ↔ Codex cycle as a governed artifact
+
 ---
 
-# 🧭 Getting involved
+## ⚖️ Governance Lifecycle
+
+### 1️⃣ Intent → Context → Specification → Plan → Tasks → Implementation → Feedback
+
+Each IDE agent transition mirrors these seven IDSE stages.
+
+### 2️⃣ Claude ↔ Codex Alternation
+
+- **Claude (builds)** → *handoff* → **Codex (reviews)** → *feedback* → **Claude
+  (refines)**
+- Each cycle forms one **constitutional feedback loop**
+- Cycles are timestamped in `idse-governance/state/state.json`
+  (`handoff_cycle_id`)
+
+### 3️⃣ IDE Governance Features
+
+- Atomic handoff automation
+- Role switching (Builder ↔ Reviewer ↔ Planner ↔ Implementer)
+- Validation scripts (`.cursor/tasks/validate-idse-layer.sh`)
+- CI workflow (`.github/workflows/validate-governance.yml`)
+- VS Code tasks for handoffs, role changes, and validation
+
+---
+
+## 🧭 Dual-Agent Roles
+
+| Agent      | Primary Stages                        | Responsibility                           |
+| ---------- | ------------------------------------- | ---------------------------------------- |
+| **Claude** | Specification → Plan → Implementation | Builds, refines, and documents artifacts |
+| **Codex**  | Feedback → Validation                 | Reviews, audits, and enforces compliance |
+
+**Both** reference the same governance state file, ensuring that only one LLM
+is active at any given time.
+
+---
+
+## 🔁 Governance Diagram
+
+```mermaid
+graph TD
+  subgraph IDSE_Lifecycle
+    A(Intent) --> B(Context)
+    B --> C(Specification)
+    C --> D(Plan)
+    D --> E(Tasks)
+    E --> F(Implementation)
+    F --> G(Feedback)
+    G --> A
+  end
+
+  subgraph Dual_LLM_Cycle
+    H[Claude • Build] --> I[Codex • Review]
+    I --> J[Claude • Refine]
+    J --> H
+  end
+
+  G --> H
+```
+
+---
+
+## ⚙️ Validation & Automation
+
+Run validations directly inside VS Code:
+
+| Task               | Command                                            | Purpose                         |
+| ------------------ | -------------------------------------------------- | ------------------------------- |
+| **View State**     | `Tasks: Run Task → View IDSE State`                | Prints current governance state |
+| **Validate Layer** | `Tasks: Run Task → Validate IDSE Governance Layer` | Runs integrity script           |
+| **Handoff Cycle**  | `Tasks: Run Task → Handoff to Codex/Claude`        | Initiates automated cycle       |
+| **Change Role**    | `Tasks: Run Task → Change Role to …`               | Switches governance roles       |
+
+---
+
+## 🌐 Optional: Cloud Deployment with Agencii
+
+1. Sign up at [agencii.ai](https://agencii.ai)
+2. Install the GitHub App
+3. Push to `main` — Agencii auto-deploys your live agency endpoint
+
+---
+
+## ✍️ Want to Build Your Own Agency?
+
+1. **Fork** this repo.
+2. Replace `idse_developer_agent/` with your own logic.
+3. Keep the `/idse-governance/` layer intact.
+4. Use VS Code + Claude + Codex for governed collaboration.
+5. Validate with `Validate IDSE Governance Layer`.
+
+## Validation & CI
+
+- Validate knowledge base: GitHub Action `validate-kb.yml`.
+- Validate governance layer: `bash .cursor/tasks/validate-idse-layer.sh` or CI
+  workflow `validate-governance.yml`.
+
+---
+
+## Contributing
 
 - **Start a new project** – Copy the templates from `kb/templates/` as a starter kit.
 - **Learn the methodology** – Read `docs/01-idse-philosophy.md` and `docs/02-idse-constitution.md` to understand the guiding principles.
