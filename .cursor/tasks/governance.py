@@ -1,55 +1,40 @@
-#!/usr/bin/env python3
-import json, sys, os, time, tempfile
+from __future__ import annotations
 
-STATE_PATH = "idse-governance/state/state.json"
+from pathlib import Path
 
-def load_state():
-    with open(STATE_PATH) as f:
-        return json.load(f)
+from session_reader import SessionReader
+from utils.doc_reader import IDSEDocReader
 
-def save_state(data):
-    tmp = tempfile.NamedTemporaryFile("w", delete=False)
-    json.dump(data, tmp, indent=2)
-    tmp.close()
-    os.replace(tmp.name, STATE_PATH)
 
-def view():
-    print(json.dumps(load_state(), indent=2))
+def show_session_info(base_dir: Path = Path(".")) -> None:
+    """Print active session and resolved artifact paths."""
+    session = SessionReader.get_active_session(base_dir=base_dir)
+    reader = IDSEDocReader(base_dir=base_dir)
 
-def handoff(frm, to, reason):
-    state = load_state()
-    state.update({
-        "active_llm": to,
-        "awaiting_handoff": True,
-        "handoff_cycle_id": time.strftime("%Y-%m-%dT%H:%MZ"),
-        "last_handoff": {
-            "from": frm,
-            "to": to,
-            "timestamp": time.strftime("%Y-%m-%dT%H:%MZ"),
-            "reason": reason
-        }
-    })
-    save_state(state)
-    print(f"Handoff recorded: {frm} → {to}")
+    print("\nIDSE Session Status")
+    print("-" * 40)
 
-def role(role_name):
-    state = load_state()
-    state["role_change_event"] = {
-        "role": role_name,
-        "timestamp": time.strftime("%Y-%m-%dT%H:%MZ")
-    }
-    save_state(state)
-    print(f"Role changed → {role_name}")
+    if not session:
+        print("Session: none detected (.idse_active_session.json missing)")
+    else:
+        print(f"Session: {session.get('session_id')}")
+        print(f"Project: {session.get('project')}")
+        print(f"Owner: {session.get('owner')}")
+
+    for stage_dir, filename in [
+        ("intents", "intent.md"),
+        ("contexts", "context.md"),
+        ("specs", "spec.md"),
+        ("plans", "plan.md"),
+        ("tasks", "tasks.md"),
+    ]:
+        path = reader.resolve(stage_dir, filename)
+        label = f"{stage_dir}/{filename}"
+        if path:
+            print(f"✓ {label}: {path}")
+        else:
+            print(f"• {label}: not found")
+
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: governance.py [view|handoff|role]")
-        sys.exit(1)
-    cmd = sys.argv[1]
-    if cmd == "view":
-        view()
-    elif cmd == "handoff":
-        frm, to, *reason = sys.argv[2:]
-        handoff(frm, to, " ".join(reason))
-    elif cmd == "role":
-        role(sys.argv[2])
+    show_session_info()
