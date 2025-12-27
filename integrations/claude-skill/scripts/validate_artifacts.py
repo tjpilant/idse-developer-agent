@@ -27,6 +27,7 @@ from utils.doc_reader import IDSEDocReader  # noqa: E402
 from guardrails.instruction_protection import (  # noqa: E402
     idse_boundary_guardrail,
 )
+from utils.template_writer import TemplateWriter  # noqa: E402
 
 STAGE_ORDER = ["intent", "context", "spec", "plan", "tasks"]
 STAGE_DEPENDENCIES = {
@@ -62,15 +63,17 @@ def validate_artifact(path: Path) -> dict:
 
     content = path.read_text()
     stage = path.stem.lower()
+    is_draft = TemplateWriter.is_draft(content)
 
     issues = find_requires_input(content)
 
     return {
         "path": str(path),
         "stage": stage,
-        "valid": len(issues) == 0,
+        "valid": True if is_draft else len(issues) == 0,
         "unresolved_count": len(issues),
         "issues": issues,
+        "draft": is_draft,
     }
 
 
@@ -143,6 +146,9 @@ def print_report(results: dict):
 
     for artifact in results["artifacts"]:
         status = "✅" if artifact["valid"] else "❌"
+        if artifact.get("draft"):
+            status = "⚠️"
+
         print(f"\n{status} {artifact['stage']}.md ({artifact['path']})")
 
         if artifact["issues"]:
@@ -152,6 +158,9 @@ def print_report(results: dict):
                 print(f"     Line {line_num}: {truncated}")
             if len(artifact["issues"]) > 5:
                 print(f"     ... and {len(artifact['issues']) - 5} more")
+
+        if artifact.get("draft"):
+            print("   Draft: marked [DRAFT - PENDING AGENCY REVIEW] (warning only)")
 
     print("\n" + "-" * 50)
     print(f"Total unresolved: {results['total_unresolved']}")
