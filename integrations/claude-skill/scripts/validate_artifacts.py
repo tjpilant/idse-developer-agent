@@ -24,6 +24,9 @@ if str(ROOT_DIR) not in sys.path:
 
 from session_reader import SessionReader  # noqa: E402
 from utils.doc_reader import IDSEDocReader  # noqa: E402
+from guardrails.instruction_protection import (  # noqa: E402
+    idse_boundary_guardrail,
+)
 
 STAGE_ORDER = ["intent", "context", "spec", "plan", "tasks"]
 STAGE_DEPENDENCIES = {
@@ -53,6 +56,10 @@ def find_requires_input(content: str) -> list[tuple[int, str]]:
 
 def validate_artifact(path: Path) -> dict:
     """Validate a single artifact file."""
+    is_safe, message = idse_boundary_guardrail(str(path), "read")
+    if not is_safe:
+        raise PermissionError(message)
+
     content = path.read_text()
     stage = path.stem.lower()
 
